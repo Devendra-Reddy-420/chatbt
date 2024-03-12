@@ -13,21 +13,21 @@ pipeline{
     }
     stage(Dev-Deploy){
       when {
-                expression { BRANCH_NAME == 'develop' }
+                branch 'develop'
             }
       Steps{
               echo "dev Deploy"
           }
       stage(Test-Deploy){
         when {
-                expression { BRANCH_NAME == 'test' }
+                branch 'test'
             }
       Steps{
               echo "Test Deploy"
           }
         stage(Prod-Deploy){
           when {
-                expression { BRANCH_NAME == 'main' }
+                branch 'main'
             }
       Steps{
              echo "Prod Deploy"
