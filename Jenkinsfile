@@ -1,17 +1,17 @@
 pipeline{
   agent any
       stages{
-        stage(Git Checkout){
+        stage('Git Checkout'){
             Steps{
               git branch: 'main', url: 'https://github.com/Devendra-Reddy-420/chatbt'
                 }
           }
-        stage(Maven Build){
+        stage('Maven Build'){
             Steps{
               sh 'mvn clean package'
               }
            }
-        stage(Dev-Deploy){
+        stage('Dev-Deploy'){
       when {
               branch 'develop'
             }
@@ -19,7 +19,7 @@ pipeline{
               echo "dev Deploy"
             }
           }
-      stage(Test-Deploy){
+      stage('Test-Deploy'){
         when {
                 branch 'test'
             }
@@ -27,7 +27,7 @@ pipeline{
               echo "Test Deploy"
           }
         }
-        stage(Prod-Deploy){
+        stage('Prod-Deploy'){
           when {
                 branch 'main'
             }
